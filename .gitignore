@@ -27,3 +27,4 @@ log.txt
 
 # Exclude h5 files
 *.h5
+*.joblib

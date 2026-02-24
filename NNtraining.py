@@ -135,18 +135,18 @@ def network256(x, y, training_folder, training_name, lrate, batchsize):
     # the neural network can stop before the full number of epoches are run. Here, the criterion for this is the validation loss. 
     # If it has not varied by the min_delta, it will run another 'patience' epochs before terminating the training. Then the best 
     # weights will be used based on the mode.
-    es = EarlyStopping(monitor='val_loss', min_delta=5e-8, mode='min', verbose=1, patience=2000, restore_best_weights=True) 
+    # es = EarlyStopping(monitor='val_loss', min_delta=5e-8, mode='min', verbose=1, patience=2000, restore_best_weights=True) 
     
     reg.compile(loss='mse',optimizer='adam', metrics=['mae', 'msle'])   # mean square error is used for training with the optimizer 'adam'
 
     # run the training of the neural network.
-    reg.fit(X_train,Y_train,shuffle=False, batch_size=batchsize, epochs = 2000,
-            validation_split=0.4,  callbacks=[lr_callback, tf_callbacks, es], verbose = 0)
+    reg.fit(X_train,Y_train,shuffle=False, batch_size=batchsize, epochs = 4000,
+            validation_split=0.4,  callbacks=[lr_callback] + tf_callbacks, verbose = 0)
         
     reg_name = os.path.join(training_folder, "%s_trained_model.h5" % training_name)   # create path to store the neural network
     # save the neural network
     reg.save(reg_name)  
-    reg.save(os.path.join(training_folder, 'model'))
+    reg.save(os.path.join(training_folder, 'model.keras'))
     return reg, reg_name, X_test, Y_test, X_train, Y_train
 
 def check_nn(reg1, x1_test, y1_test, dir, fname):
