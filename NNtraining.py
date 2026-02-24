@@ -123,6 +123,7 @@ def network256(x, y, training_folder, training_name, lrate, batchsize):
                         histogram_freq=1,
                         update_freq='epoch',
                          profile_batch=(2,10))]
+    os.system("tensorboard --logdir " + log_folder + " --host 0.0.0.0 --port 6006 &")
     # to activate tensorboard to observe the training losses, activate the right environment in conda and use the command 'tensorboard --logdir log_folder'
 
     # currently, checkpoints are saved after each iteration, I might uncomment this. To load the checkpoint, use 'reg.load_weights(checkpoint_path)'
