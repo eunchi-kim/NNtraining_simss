@@ -10,7 +10,7 @@ import joblib, h5py, json
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 
-def par_fit_transform(par_mat, log_indices):
+def par_fit_transform(par_mat):
     '''
     par_fit_transform : perform StandardScaler transformation of the input parameters into the space required by the Neural Network. 
                         before aplying StandardScaler transformation a natural log transform is done on all the inputs.
@@ -25,40 +25,11 @@ def par_fit_transform(par_mat, log_indices):
     par_norm : standardnorm of par_mat
     scaler : scaler value for normalization 
     ''' 
-
-    par_mat_ln = log_trans(par_mat, log_indices)   # get the logarithm of those parameters that are varied over several orders of magnitude  
     
     scaler = StandardScaler()   # define scaler object
-    par_norm = scaler.fit_transform(par_mat_ln) # transform data with the standard scaler
+    par_norm = scaler.fit_transform(par_mat) # transform data with the standard scaler
     return par_norm, scaler
 
-def log_trans(paras, log_indices):
-    '''
-    log_trans : take the logarithm of a certain subset of data that is varied over several orders of magnitude  
-                !!! number of parameters that scales linearly must be defined here !!!
-
-    Returns
-    -------
-    mod : data with the natural logarithm of some data
-    ''' 
-    mod = np.copy(paras)
-    for idx in log_indices:
-        mod[:, idx] = np.log(paras[:, idx])
-    return mod
-
-def exp_trans(paras, log_indices):
-    '''
-    exp_trans : take the exponential of a certain subset of data that is varied over several orders of magnitude  
-                !!! number of parameters that scales linearly must be defined here !!!
-
-    Returns
-    -------
-    mod : data with the exponential of some data
-    ''' 
-    mod = np.copy(paras)
-    for idx in log_indices:
-        mod[:, idx] = np.exp(paras[:, idx])
-    return mod
 
 def plot_sim(y, dir,fname):
     '''
@@ -242,7 +213,7 @@ def main(NN_name, dataset_name, lr, batch_size):
         os.makedirs(res_dir)
 
     # Back up scripts
-    backup_path = os.path.join(dir,"ScriptsUsed") # create folder path to copy the python script version of this run to 
+    backup_path = os.path.join(res_dir,"ScriptsUsed") # create folder path to copy the python script version of this run to 
     if not os.path.exists(backup_path):
         os.mkdir(backup_path)   # create folder
     current_script = sys.argv[0]
@@ -252,7 +223,7 @@ def main(NN_name, dataset_name, lr, batch_size):
     # Load input output file
     dataset_path = os.path.join('/content/drive/MyDrive/NNtraining_temp/', 'combined_SCLCdata.h5')
     with h5py.File(dataset_path, 'r') as hf:
-        input_all = hf['input_all'][:]
+        input_all_log = hf['input_all'][:]
         nn_outputs = hf['nn_outputs'][:]
         nn_outputs_norm = hf['nn_outputs_scaled'][:]      # normalized
         combined_v_target = hf['combined_v_target'][:]
@@ -266,12 +237,12 @@ def main(NN_name, dataset_name, lr, batch_size):
     shutil.copy2(json_path, os.path.join(res_dir, 'simulation_metadata.json'))
 
     # Log-transform input parameters 
-    input_all_norm, scaler = par_fit_transform(input_all, log_indices)
-    scaler_name = os.path.join(dir,timestamp + '_' + NN_name + "_scaler.joblib")  # create filname for the scaler used
+    input_all_norm, scaler = par_fit_transform(input_all_log)
+    scaler_name = os.path.join(res_dir,timestamp + '_' + NN_name + "_scaler.joblib")  # create filname for the scaler used
     joblib.dump(scaler, scaler_name)    # save scaler at the path 'scaler_name'
 
     # select some random points and plot to see if you have loaded the correct datasets.
-    dir1 = os.path.join(dir, 'y1')
+    dir1 = os.path.join(res_dir, 'y1')
     os.mkdir(dir1)  # create directory for the first neural network
     idx = np.random.randint(0, nn_outputs_norm.shape[0],9)   # get random indices for test ploting of the training data
     plot_sim(nn_outputs_norm[idx,:], dir1, 'y1_norm.png')   # plot test subset of the training data
