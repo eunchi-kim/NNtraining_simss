@@ -123,7 +123,7 @@ for bb in range(num_batches):
     exp_JV_len = np.loadtxt(exp_JV_filename, skiprows=1).shape[0]
     valid_data = []
     valid_samples = []
-    for ID, sample in zip(ID_list, scaled_samples):
+    for ID, sample in zip(ID_list, batch_samples):
         JV_file_name = os.path.join(res_dir,f'JV_{ID}.dat')
         log_file_name = os.path.join(res_dir,f'log_{ID}.txt')
         try:
