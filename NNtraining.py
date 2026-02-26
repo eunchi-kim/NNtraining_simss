@@ -30,6 +30,26 @@ def par_fit_transform(par_mat):
     par_norm = scaler.fit_transform(par_mat) # transform data with the standard scaler
     return par_norm, scaler
 
+def log_trans(paras, n_var, ln_idx):
+    '''
+    log_trans : take the logarithm of a certain subset of data that is varied over several orders of magnitude  
+                !!! number of parameters that scales linearly must be defined here !!!
+    
+    Parameters
+    ----------
+    paras : numpy.array of data of which a subset is supposed to be transformed. one dimension must be of the size n_var 
+    n_var : number of variable parameters
+    ln_idx : index of the start of logscale parameter
+
+    Returns
+    -------
+    mod : data with the natural logarithm of some data
+    ''' 
+    if np.shape(paras)[0] == n_var:  # check which dimension contains the n_var parameters
+        mod = np.concatenate((paras[:ln_idx],np.log(paras[ln_idx:])),axis=0)    # take logarithm of some parameters along that axis
+    elif np.shape(paras)[1] == n_var:    # check which dimension contains the n_var parameters
+        mod = np.concatenate((paras[:,:ln_idx],np.log(paras[:,ln_idx:])),axis=1)     # take logarithm of some parameters along that axis
+    return mod
 
 def plot_sim(y, dir,fname):
     '''
@@ -224,10 +244,8 @@ def main(NN_name, dataset_name, lr, batch_size):
     # Load input output file
     dataset_path = os.path.join('/content/drive/MyDrive/NNtraining_temp/', 'combined_SCLCdata.h5')
     with h5py.File(dataset_path, 'r') as hf:
-        input_all_log = hf['input_all'][:]
-        nn_outputs = hf['nn_outputs'][:]
+        input_all = hf['input_all'][:]
         nn_outputs_norm = hf['nn_outputs_scaled'][:]      # normalized
-        combined_v_target = hf['combined_v_target'][:]
         
     # Load other variables
     json_path = os.path.join(cwd, 'Datagen_results', dataset_name, 'simulation_metadata.json')
@@ -238,6 +256,8 @@ def main(NN_name, dataset_name, lr, batch_size):
     shutil.copy2(json_path, os.path.join(res_dir, 'simulation_metadata.json'))
 
     # Log-transform input parameters 
+    input_all_log = log_trans(input_all, len(varied_params), min(log_indices))
+    print(input_all_log[999,:])
     input_all_norm, scaler = par_fit_transform(input_all_log)
     scaler_name = os.path.join(res_dir,timestamp + '_' + NN_name + "_scaler.joblib")  # create filname for the scaler used
     joblib.dump(scaler, scaler_name)    # save scaler at the path 'scaler_name'
