@@ -4,7 +4,7 @@
 ** version: 5.13
 
 **General***************************************************************************
-L = 100E-9                    * m, device length/thickness
+L = 125E-9                    * m, device length/thickness
 eps_r = 3.3                    * relative dielectric constant
 E_c = 4.2                    * eV, conduction band edge
 E_v = 5.4                     * eV, valence band edge

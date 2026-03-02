@@ -120,7 +120,7 @@ def run_cmaes_sclc(
     best_full = best_optimized.reshape(1, -1)
     
     # Transform the full vector using the provided scaler
-    jvi_scaler = cost_func_kwargs['jvi_scalers']['jvi_stscaler']
+    jvi_scaler = cost_func_kwargs['scalers']['sclc_stscaler']
     best_norm = jvi_scaler.transform(best_full)
 
     if verbose:

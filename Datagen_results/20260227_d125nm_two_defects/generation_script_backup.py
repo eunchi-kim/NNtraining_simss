@@ -65,8 +65,8 @@ for key in log_transform_items:
 simss_device_parameters = os.path.join(cwd, 'SIMsalabim','SimSS','simulation_setup_sclc_notl.txt')     
 
 # Create the results directory if it doesn't exist
-dataset_name = "20260227_d100nm_two_defects"
-res_dir = os.path.join(cwd, "Datagen_results", dataset_name)
+dataset_name = "20260227_d125nm_two_defects"
+res_dir = os.path.join(cwd, "results", dataset_name)
 if not os.path.exists(res_dir):
     os.makedirs(res_dir)
 current_script = sys.argv[0]
