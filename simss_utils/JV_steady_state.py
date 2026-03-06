@@ -93,7 +93,7 @@ def run_SS_JV(simss_device_parameters, result_path, session_path, JV_file_name =
 
     else:
         # Update the filenames with the UUID
-        JV_file_name = os.path.join(session_path,JV_file_name)
+        JV_file_name = os.path.join(result_path,'JV.dat')
         JV_file_name_base, JV_file_name_ext = os.path.splitext(JV_file_name)
 
         # SS_JV_args = [{'par':'dev_par_file','val':simss_device_parameters}]
@@ -102,8 +102,8 @@ def run_SS_JV(simss_device_parameters, result_path, session_path, JV_file_name =
             dum_args = [{'par':'dev_par_file','val':simss_device_parameters},
             {'par':'G_frac','val':str(G_frac)},
                                     {'par':'JVFile','val':JV_file_name_base + f'_Gfrac_{G_frac}' + dum_str + JV_file_name_ext},
-                                    {'par':'logFile','val':os.path.join(session_path,'log'+f'_Gfrac_{G_frac}'+dum_str+'.txt')},
-                                    {'par':'scParsFile','val':os.path.join(session_path,'scPars'+f'_Gfrac_{G_frac}'+dum_str+'.txt')}]
+                                    {'par':'logFile','val':os.path.join(result_path,'log'+f'_Gfrac_{G_frac}'+dum_str+'.txt')},
+                                    {'par':'scParsFile','val':os.path.join(result_path,'scPars'+f'_Gfrac_{G_frac}'+dum_str+'.txt')}]
             if cmd_pars is not None:
                 dum_args = update_cmd_pars(dum_args, cmd_pars)
             SS_JV_args_list.append(dum_args)                             
@@ -114,9 +114,9 @@ def run_SS_JV(simss_device_parameters, result_path, session_path, JV_file_name =
         else:
             results, msg_list = [], []
             for dum_args in SS_JV_args_list:
-
+                print(dum_args)
                 if threadsafe:
-                    result, message = utils_gen.run_simulation_filesafe('simss', dum_args, session_path, run_mode)
+                    result, message = utils_gen.run_simulation_filesafe('simss', dum_args, session_path, run_mode, verbose=True)
                 else:
                     result, message = utils_gen.run_simulation('simss', dum_args, session_path, run_mode)
                 

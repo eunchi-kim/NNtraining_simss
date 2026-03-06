@@ -290,7 +290,8 @@ def run_simulation_filesafe(sim_type, cmd_pars, session_path, run_mode = False, 
         try:
             dev_par, layers = load_device_parameters(session_path, device_parameters, run_mode = False)
             break
-        except:
+        except Exception as e:
+            print(f"DEBUG: load_device_parameters failed: {e}")
             pass 
         time.sleep(0.002)
 
@@ -411,7 +412,7 @@ def run_simulation_filesafe(sim_type, cmd_pars, session_path, run_mode = False, 
     print('we are here')
     # Run the simulation
     if os.name == 'nt':
-        result = run(cmd_line, cwd=tmp_folder, check=False, shell=True)
+        result = run(cmd_line, cwd=tmp_folder, stdout=PIPE, check=False, shell=True)
     else:
         result = run([cmd_line], cwd=tmp_folder, stdout=PIPE, check=False, shell=True)
     

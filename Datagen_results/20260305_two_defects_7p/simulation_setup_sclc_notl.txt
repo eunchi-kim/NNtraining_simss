@@ -33,7 +33,7 @@ lambda_min = 3.5E-7               * m, lower bound wavelength
 lambda_max = 8E-7                 * m, upper bound wavelength
 
 **Numerical Parameters**************************************************************
-NP = 400                          * integer, number of grid points, must be at least 5 per layer.
+NP =250                         * integer, number of grid points, must be at least 5 per layer.
 tolPois = 1e-7                 * V, abs. tolerance of iterative Poisson solver
 maxDelV = 10                      * maximum change (in Vt) of the potential per loop
 maxItPois = 1e4                  * max. number it. Poisson loop
@@ -45,7 +45,7 @@ minAcc = 1                     * >0, min. acceleration parameter
 maxAcc = 1                     * <2, max. acceleration parameter
 ignoreNegDens = 1                 * whether(1) or not(<>1) to ignore negative densities
 failureMode = 1                   * how treat failed (t,V,G) points: 0: stop, 1: ignore, 2: skip
-grad = 0                          * determines shape of exp. grid, increase grad for smaller h[1]
+grad = 1                          * determines shape of exp. grid, increase grad for smaller h[1]
 
 **Voltage range of simulation*******************************************************
 Vdist = 2                         * 1 for uniform (specified by Vstep), 2 for logarithmic (specified by Vacc and NJV)
@@ -65,8 +65,8 @@ untilVoc = 0                      * if 1 then SimSS will stop at Voc
 timeout = 5                     * s, max run time, use negative value for unlimited run time.
 pauseAtEnd = 0                    * pause at the end of the simulation yes(1) or no (0)
 autoTidy = 0                      * if 1, then the program will always tidy up this file
-useExpData = 0                   * if 1, SimSS will try to read JV_Exp and use it
-expJV = expJV.csv                 * name of file with experimental JV characteristics
+useExpData = 1                   * if 1, SimSS will try to read JV_Exp and use it
+expJV = exp_JV.csv                 * name of file with experimental JV characteristics
 fitMode = lin                     * lin or log: use J or log(J) in calc. of fit error
 fitThreshold = 0.8                * threshold of fraction converged points in calc. fit error
 JVFile = JV.dat                   * name of the file with simulated JV characteristics

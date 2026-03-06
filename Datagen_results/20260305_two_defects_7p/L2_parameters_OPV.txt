@@ -56,5 +56,5 @@ N_t_bulk = 0E22               * m^-3, trap density (in bulk)
 C_n_bulk = 1E-14              * m^3/s, capture coefficient for electrons (put to 0 to exclude capture from and emission to the conduction band)
 C_p_bulk = 0E-14              * m^3/s, capture coefficient for holes (put to 0 to exclude capture from and emission to the valence band)
 E_t_bulk = 4.8                * eV, energy level of all traps
-bulkTrapFile = traps5.txt
+bulkTrapFile = none	* bulkTrapfile
 bulkTrapType = -1             * Trap type of bulk traps: -1: acceptor, 0: neutral, 1: donor
