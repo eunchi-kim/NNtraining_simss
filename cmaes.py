@@ -164,6 +164,62 @@ def _calculate_sclc_error(
     
     return total_error
 
+def _calculate_sclc_joint_fit_error_batch(
+    theta_pop: np.ndarray, # Shape: (pop_size, N + 6)
+    obs_mask: np.ndarray, 
+    models: dict, 
+    scalers: dict, 
+    data: dict, 
+    config: dict
+) -> np.ndarray: # Returns array of errors of length (pop_size)
+    
+    y_exp_all = data['y_exp_sclc_log'] # Shape: (N, points)
+    num_samples = y_exp_all.shape[0]
+    pop_size = theta_pop.shape[0]
+    
+    # 1. Split Population
+    # thicknesses: (pop_size, N)
+    # shared_params: (pop_size, 6)
+    thicknesses = theta_pop[:, :num_samples]
+    shared_params = theta_pop[:, num_samples:]
+
+    # 2. Reshape for the Neural Network
+    # We need to create a row for every (individual, sample) combination
+    # Final shape needed: (pop_size * N, 7)
+    
+    # Repeat each individual's shared params N times
+    # shared_expanded shape: (pop_size * N, 6)
+    shared_expanded = np.repeat(shared_params, num_samples, axis=0)
+    
+    # Flatten thicknesses: [ind1_s1, ind1_s2, ind2_s1, ind2_s2...]
+    # thick_flat shape: (pop_size * N, 1)
+    thick_flat = thicknesses.reshape(-1, 1)
+    
+    # Combine into the 7-parameter input
+    full_input_batch = np.column_stack((thick_flat, shared_expanded))
+
+    # 3. Batch Prediction
+    theta_norm = scalers['sclc_stscaler'].transform(full_input_batch)
+    y_pred = models['sclc_reg'].predict(theta_norm, verbose=0)
+    y_pred_log = scale_back(y_pred, scalers['y1_min_sclc'], scalers['y1_max_sclc'])
+    
+    # Reshape predictions back to (pop_size, num_samples, points)
+    y_pred_reshaped = y_pred_log.reshape(pop_size, num_samples, -1)
+
+    # 4. Vectorized Error Calculation
+    # We compare y_pred_reshaped (pop, N, pts) with y_exp_all (N, pts)
+    # Calculate squared difference
+    diff_sq = (y_pred_reshaped[:,:,data['voltage_mask']] - y_exp_all[:,data['voltage_mask']])**2
+    
+    # Calculate RMSE per sample, per individual
+    # We average over the points dimension (axis=2)
+    sample_rmses = np.sqrt(np.mean(diff_sq, axis=2)) # Shape: (pop_size, num_samples)
+    
+    # 5. Final Summation
+    # Sum the errors across all samples for each individual in the population
+    total_errors = np.sum(sample_rmses, axis=1) # Shape: (pop_size,)
+    
+    return total_errors
 
 def scale_and_exponentiate(pred, min_val, max_val):
     return np.exp(pred * (max_val - min_val) + min_val)
