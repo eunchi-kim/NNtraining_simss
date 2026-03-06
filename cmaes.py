@@ -61,7 +61,7 @@ def run_cmaes_sclc(
     n_gen: int = 100,
     sigma: float = 0.2,
     weight: float = 1,
-    shifterror: bool = False,
+    joint_opt: bool = False,
     verbose: bool = False
 ):
     """
@@ -95,6 +95,15 @@ def run_cmaes_sclc(
         cost_function=_calculate_sclc_error,  # Assuming 'evaluate_cost' is your cost function
         cost_func_kwargs={'obs_mask': obs_mask,**cost_func_kwargs}
     )
+    
+    if joint_opt:
+        problem = OptimizationProblem(
+        n_var=n_var,
+        lb=lb_mod,
+        ub=ub_mod,
+        cost_function=_calculate_sclc_joint_fit_error_batch,  # Assuming 'evaluate_cost' is your cost function
+        cost_func_kwargs={'obs_mask': obs_mask,**cost_func_kwargs}
+    )
 
     # 2. Define the algorithm
     algorithm = CMAES(
@@ -121,7 +130,25 @@ def run_cmaes_sclc(
     
     # Transform the full vector using the provided scaler
     jvi_scaler = cost_func_kwargs['scalers']['sclc_stscaler']
-    best_norm = jvi_scaler.transform(best_full)
+    if joint_opt:
+        # Reconstruct the (N, 7) matrix for the best solution to allow scaling
+        num_samples = cost_func_kwargs['data']['y_exp_sclc_log'].shape[0]
+        
+        best_thicknesses = best_optimized[:num_samples]
+        best_shared_material = best_optimized[num_samples:]
+        
+        # Tile and stack to create the (N, 7) matrix
+        best_full = np.column_stack((
+            best_thicknesses, 
+            np.tile(best_shared_material, (num_samples, 1))
+        ))
+        
+        # best_norm will now be (N, 7)
+        best_norm = jvi_scaler.transform(best_full)
+    else:
+        # Standard 7-param logic
+        best_full = best_optimized.reshape(1, -1)
+        best_norm = jvi_scaler.transform(best_full)
 
     if verbose:
         print(f"CMA-ES optimization took {res.exec_time:.2f} seconds.")
