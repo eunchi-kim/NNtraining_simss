@@ -24,13 +24,13 @@ R_series = 0                      * Ohms m2, series resistance.
 
 **Optics****************************************************************************
 G_frac = 1                        * fraction of Gmax used in solar cell
-genProfile = ../Data/SIM_45mA_0OD_d250nm.txt           * name of file generation profile (or 'none' or 'calc')
+genProfile = calc          * name of file generation profile (or 'none' or 'calc')
 L_TCO = 1.1E-7                    * m, thickness of the TCO. Set to 0 if layer is not used
 L_BE = 2E-7                       * m, thickness of back electrode, must be >0
 nkSubstrate = ../Data/nk_SiO2.txt * name of file with n,k values of substrate
 nkTCO = ../Data/nk_ITO.txt        * name of file with n,k values of TCO
 nkBE = ../Data/nk_Ag.txt          * name of file with n,k values of back electrode
-spectrum = ../Data/AM15G.txt      * name of file that contains the spectrum
+spectrum = ../Data/LED_200mA_0OD_B10n1-1.dat      * name of file that contains the spectrum
 lambda_min = 3.5E-7               * m, lower bound wavelength
 lambda_max = 8E-7                 * m, upper bound wavelength
 
