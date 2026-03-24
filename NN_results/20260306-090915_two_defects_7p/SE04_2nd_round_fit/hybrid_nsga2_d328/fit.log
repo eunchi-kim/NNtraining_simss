@@ -1,0 +1,27 @@
+2026-03-19 21:24:24,160 - INFO - Import best-fit parameters from SCLC fitting...
+2026-03-19 21:24:24,173 - INFO - {'l1_d_sclc': 3.28e-07, 'W_L': 4.362478392556494, 'W_R_sclc': 4.200000043430672, 'mu_e': -16.354444994345954, 'E_d_sh': 4.228569930482258, 'N_t_sh': 50.656872099270345, 'N_t_d': 48.40830545410283, 'Rpdark': [10.8, 34.6]}
+2026-03-19 21:24:24,174 - INFO - Initializing Hybrid Optuna Workflow...
+2026-03-19 21:24:26,616 - INFO - Enqueued SCLC pre-fit as starting point.
+2026-03-19 21:24:26,617 - INFO - Starting Multi-Objective Optimization...
+2026-03-19 21:25:03,189 - INFO - Import best-fit parameters from SCLC fitting...
+2026-03-19 21:25:03,197 - INFO - {'l1_d_sclc': 3.28e-07, 'W_L': 4.362478392556494, 'W_R_sclc': 4.200000043430672, 'mu_e': -16.354444994345954, 'E_d_sh': 4.228569930482258, 'N_t_sh': 50.656872099270345, 'N_t_d': 48.40830545410283, 'Rpdark': [10.8, 34.6]}
+2026-03-19 21:25:03,200 - INFO - Initializing Hybrid Optuna Workflow...
+2026-03-19 21:25:03,705 - INFO - Enqueued SCLC pre-fit as starting point.
+2026-03-19 21:25:03,706 - INFO - Starting Multi-Objective Optimization...
+2026-03-19 21:32:27,156 - INFO - Optimization complete. Best trade-off trials:
+2026-03-19 21:32:27,242 - INFO - Trial 0: SCLC Error = 0.0015, JVi Error = 0.1667
+2026-03-19 21:32:27,243 - INFO - Trial 249: SCLC Error = 0.0058, JVi Error = 0.0504
+2026-03-19 21:32:27,245 - INFO - Trial 264: SCLC Error = 0.0015, JVi Error = 0.1667
+2026-03-19 21:32:27,246 - INFO - Trial 333: SCLC Error = 0.0107, JVi Error = 0.0168
+2026-03-19 21:32:27,247 - INFO - Trial 370: SCLC Error = 0.0096, JVi Error = 0.0394
+2026-03-19 21:32:27,249 - INFO - Trial 377: SCLC Error = 0.0018, JVi Error = 0.1080
+2026-03-19 21:33:16,054 - INFO - best-fit0 simulation with spectrum from Data/LED_(*)_B10n1-1.txt
+2026-03-19 21:33:19,617 - INFO - Phi vs. jv charac plot saved for B10n1-1 at c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d328_Ev
+2026-03-19 21:33:31,620 - INFO - best-fit1 simulation with spectrum from Data/LED_(*)_B10n1-1.txt
+2026-03-19 21:33:33,645 - INFO - Phi vs. jv charac plot saved for B10n1-1 at c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d328_Ev
+2026-03-19 21:33:47,245 - INFO - best-fit2 simulation with spectrum from Data/LED_(*)_B10n1-1.txt
+2026-03-19 21:33:49,513 - INFO - Phi vs. jv charac plot saved for B10n1-1 at c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d328_Ev
+2026-03-19 21:34:02,138 - INFO - best-fit3 simulation with spectrum from Data/LED_(*)_B10n1-1.txt
+2026-03-19 21:34:04,057 - INFO - Phi vs. jv charac plot saved for B10n1-1 at c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d328_Ev
+2026-03-19 21:34:17,257 - INFO - best-fit4 simulation with spectrum from Data/LED_(*)_B10n1-1.txt
+2026-03-19 21:34:19,455 - INFO - Phi vs. jv charac plot saved for B10n1-1 at c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d328_Ev

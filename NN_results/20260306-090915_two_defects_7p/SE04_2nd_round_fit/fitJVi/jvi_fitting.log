@@ -1,0 +1,20 @@
+2026-03-12 11:06:41,245 - INFO - Starting Optimization Workflow
+2026-03-12 11:06:41,246 - INFO - <class '__main__.Config'>
+2026-03-12 11:06:41,246 - INFO - [Real(low=5.1, high=5.4, prior='uniform', transform='identity'), Real(low=0.5, high=1.0, prior='uniform', transform='identity'), Real(low=1e-18, high=1e-14, prior='log-uniform', transform='identity'), Real(low=1e-18, high=1e-14, prior='log-uniform', transform='identity'), Real(low=1e-08, high=1e-06, prior='log-uniform', transform='identity')]
+2026-03-12 11:06:41,267 - INFO - {'l1_d': 1.3e-07, 'W_L': 4.362478392556494, 'mu_e': 7.895048174638054e-08, 'E_d_sh': 4.228569930482258, 'N_t_sh': 1.000000053401341e+22, 'N_t_d': 1.0555041300968638e+21, 'Rpdark': [10.8, 34.6]}
+2026-03-12 11:06:41,283 - INFO - Data imported from C:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\expData\2024-01-04-B10n1 LowLight_JVi_#1_2.dat
+2026-03-12 11:06:41,284 - INFO - Running Gaussian Process Minimization...
+2026-03-12 11:09:30,426 - INFO - Optimization finished. History saved to C:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\fitJVi\optimization_history.csv
+2026-03-12 11:09:30,427 - INFO - Best parameters: [5.353867723647343, 0.5065901210118323, 9.237830316992744e-18, 1.1483373463556162e-16, 1.5874347107101124e-07]
+2026-03-12 11:09:32,328 - INFO - JV compare plot saved for B10n1-1 at C:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\fitJVi\fit_compare.png
+2026-03-12 11:09:32,331 - INFO - best-fit simulation with spectrum from Data/LED_200mA_0OD_B10n1-1.txt
+2026-03-12 11:09:33,459 - INFO - best-fit simulation with spectrum from Data/LED_95mA_0OD_B10n1-1.txt
+2026-03-12 11:09:34,581 - INFO - best-fit simulation with spectrum from Data/LED_45mA_0OD_B10n1-1.txt
+2026-03-12 11:09:35,656 - INFO - best-fit simulation with spectrum from Data/LED_200mA_1OD_B10n1-1.txt
+2026-03-12 11:09:36,349 - INFO - best-fit simulation with spectrum from Data/LED_95mA_1OD_B10n1-1.txt
+2026-03-12 11:09:37,044 - INFO - best-fit simulation with spectrum from Data/LED_45mA_1OD_B10n1-1.txt
+2026-03-12 11:09:37,717 - INFO - best-fit simulation with spectrum from Data/LED_200mA_2OD_B10n1-1.txt
+2026-03-12 11:09:38,377 - INFO - best-fit simulation with spectrum from Data/LED_95mA_2OD_B10n1-1.txt
+2026-03-12 11:09:39,514 - INFO - best-fit simulation with spectrum from Data/LED_45mA_2OD_B10n1-1.txt
+2026-03-12 11:09:40,602 - INFO - best-fit simulation with spectrum from Data/LED_20mA_2OD_B10n1-1.txt
+2026-03-12 11:09:43,887 - INFO - Phi vs. jv charac plot saved for B10n1-1 at C:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\fitJVi

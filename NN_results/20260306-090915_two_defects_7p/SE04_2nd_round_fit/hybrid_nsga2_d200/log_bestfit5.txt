@@ -1,0 +1,82 @@
+Version 5.13
+Size of reals used in simulation: 10 bytes
+Timestamp at start: 12/03/2026 16:44:12
+Reading in of parameters:
+l1.L = 1.3E-7
+l1.mu_n = 1.32057961597536E-7
+l1.mu_p = 1.12138938262368E-8
+l1.k_direct = 1.6160903172338E-17
+l1.C_n_bulk = 2.05458202514658E-17
+l1.bulkTrapFile = c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d200\traps_bestfit5.txt
+Read parameters for layer 1 from L2_parameters_OPV.txt
+W_L = 4.300405669315023
+W_R = 5.350445295219125
+G_frac = 0.506748495736944
+JVFile = c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d200\JV_bestfit5.dat
+logFile = c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d200\log_bestfit5.txt
+Read simulation setup from c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\SIMsalabim\SimSS\simulation_setup.txt
+Reading trap profile from c:\Users\e.kim\Desktop\simS_sclc\NNtraining_simss\NN_results\20260306-090915_two_defects_7p\SE04_2nd_round_fit\hybrid_nsga2_d200\traps_bestfit5.txt
+
+The following voltages will be simulated:
+  i       V    UpdateIons   Store
+  1     0.000     TRUE      TRUE
+  2     0.020     TRUE      TRUE
+  3     0.040     TRUE      TRUE
+  4     0.060     TRUE      TRUE
+  5     0.080     TRUE      TRUE
+  6     0.100     TRUE      TRUE
+  7     0.120     TRUE      TRUE
+  8     0.140     TRUE      TRUE
+  9     0.160     TRUE      TRUE
+ 10     0.180     TRUE      TRUE
+ 11     0.200     TRUE      TRUE
+ 12     0.220     TRUE      TRUE
+ 13     0.240     TRUE      TRUE
+ 14     0.260     TRUE      TRUE
+ 15     0.280     TRUE      TRUE
+ 16     0.300     TRUE      TRUE
+ 17     0.320     TRUE      TRUE
+ 18     0.340     TRUE      TRUE
+ 19     0.360     TRUE      TRUE
+ 20     0.380     TRUE      TRUE
+ 21     0.400     TRUE      TRUE
+ 22     0.420     TRUE      TRUE
+ 23     0.440     TRUE      TRUE
+ 24     0.460     TRUE      TRUE
+ 25     0.480     TRUE      TRUE
+ 26     0.500     TRUE      TRUE
+ 27     0.520     TRUE      TRUE
+ 28     0.540     TRUE      TRUE
+ 29     0.560     TRUE      TRUE
+ 30     0.580     TRUE      TRUE
+ 31     0.600     TRUE      TRUE
+ 32     0.620     TRUE      TRUE
+ 33     0.640     TRUE      TRUE
+ 34     0.660     TRUE      TRUE
+ 35     0.680     TRUE      TRUE
+ 36     0.700     TRUE      TRUE
+ 37     0.720     TRUE      TRUE
+ 38     0.740     TRUE      TRUE
+ 39     0.760     TRUE      TRUE
+ 40     0.780     TRUE      TRUE
+ 41     0.800     TRUE      TRUE
+ 42     0.820     TRUE      TRUE
+ 43     0.840     TRUE      TRUE
+ 44     0.860     TRUE      TRUE
+ 45     0.880     TRUE      TRUE
+ 46     0.900     TRUE      TRUE
+ 47     0.920     TRUE      TRUE
+ 48     0.940     TRUE      TRUE
+ 49     0.960     TRUE      TRUE
+ 50     0.980     TRUE      TRUE
+ 51     1.000     TRUE      TRUE
+
+
+Files used to calculate the generation profile:
+- ../Data/nk_ITO.txt
+- ../Data/nk_pvxplus.txt
+- ../Data/nk_Ag.txt
+- ../Data/LED_200mA_0OD_B10n1-1.txt
+
+Timestamp at end: 12/03/2026 16:44:12
+Total run time:  0.737 seconds.

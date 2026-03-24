@@ -30,7 +30,7 @@ L_BE = 2E-7                       * m, thickness of back electrode, must be >0
 nkSubstrate = ../Data/nk_SiO2.txt * name of file with n,k values of substrate
 nkTCO = ../Data/nk_ITO.txt        * name of file with n,k values of TCO
 nkBE = ../Data/nk_Ag.txt          * name of file with n,k values of back electrode
-spectrum = ../Data/LED_200mA_0OD_B10n1-1.dat      * name of file that contains the spectrum
+spectrum = ../Data/LED_45mA_0OD_B10n1-1.txt      * name of file that contains the spectrum
 lambda_min = 3.5E-7               * m, lower bound wavelength
 lambda_max = 8E-7                 * m, upper bound wavelength
 
