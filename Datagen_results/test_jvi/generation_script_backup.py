@@ -28,12 +28,12 @@ def run_simulation_instance(sample, index, sim_setup, res_dir, cwd):
     ID = str(uuid.uuid4())
     
     # Use a unique trap filename per process to avoid collisions
-    # trap_fn = os.path.join(cwd, 'SIMsalabim', 'SimSS', f"traps_{index}.txt")
+    trap_fn = os.path.join(cwd, 'SIMsalabim', 'SimSS', f"traps_{index}.txt")
     
     try:
         # Create trap file
-        # with open(trap_fn, 'w') as f:
-        #     f.write(f"E\tNtrap\n4.85\t{N_t_d}")
+        with open(trap_fn, 'w') as f:
+            f.write(f"E\tNtrap\n4.85\t{N_t_d}")
         # Read and validate immediately
         jv_path = os.path.join(res_dir, f'JV_{ID}.dat')
         log_path = os.path.join(res_dir, f'log_{ID}.dat')
@@ -42,10 +42,9 @@ def run_simulation_instance(sample, index, sim_setup, res_dir, cwd):
             {'par': 'l1.L', 'val': str(d_abs1)},
             {'par': 'W_L', 'val': str(W_L)}, 
             {'par': 'W_R', 'val': str(W_R)},
-            # {'par': 'l1.bulkTrapFile', 'val': trap_fn},
+            {'par': 'l1.bulkTrapFile', 'val': trap_fn},
             {'par': 'l1.mu_n', 'val': str(mu_e)},
             {'par': 'l1.mu_p', 'val': str(mu_e)},
-            {'par': 'l1.N_t_bulk', 'val': str(N_t_d)},
             {'par': 'l1.k_direct', 'val': str(k_dir)},
             # {'par': 'l1.C_n_bulk', 'val': str(beta_e)},
             {'par': 'G_frac', 'val': str(GFrac)},
@@ -66,13 +65,13 @@ def run_simulation_instance(sample, index, sim_setup, res_dir, cwd):
         # Cleanup immediately after reading
         if os.path.exists(jv_path): os.remove(jv_path)
         if os.path.exists(log_path): os.remove(log_path)
-        # if os.path.exists(trap_fn): os.remove(trap_fn)
+        if os.path.exists(trap_fn): os.remove(trap_fn)
         
         return {"ID": ID, "sample": sample, "J": data_JV}
     
     except Exception as e:
         # Clean up trap file even if simulation crashes
-        # if os.path.exists(trap_fn): os.remove(trap_fn)
+        if os.path.exists(trap_fn): os.remove(trap_fn)
         return None
 
 if __name__ == '__main__':
